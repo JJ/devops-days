@@ -3,30 +3,21 @@ module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	// Project configuration
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-		meta: {
-			banner:
-				'/*!\n' +
-				' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
-				' * http://lab.hakim.se/reveal-js\n' +
-				' * MIT licensed\n' +
-				' *\n' +
-				' * Copyright (C) 2015 Hakim El Hattab, http://hakim.se\n' +
-				' */'
+	    pkg: grunt.file.readJSON('package.json'),
+	    meta: {
+		banner:
+		'/*!\n' +
+		    ' * DevOpsOSSAzureDays presentation <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
+		    ' * http://github.com/JJ/devops-days\n' +
+		    ' * Apache licensed\n' +
+		    ' *\n' +
+		    ' * Copyright (C) 2015 Hakim El Hattab, http://hakim.se\n' +
+		    ' * Copyright (C) 2015 JJ Merelo, http://jj.github.io (nuevo contenido)\n' +
+		    ' */'
 		},
 
 		qunit: {
 			files: [ 'test/*.html' ]
-		},
-
-		uglify: {
-			options: {
-				banner: '<%= meta.banner %>\n'
-			},
-			build: {
-				src: 'js/reveal.js',
-				dest: 'js/reveal.min.js'
-			}
 		},
 
 		sass: {
@@ -140,7 +131,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
@@ -149,9 +139,6 @@ module.exports = function(grunt) {
 
 	// Default task
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
-
-	// JS task
-	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
 
 	// Theme CSS
 	grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
