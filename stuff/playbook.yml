@@ -12,3 +12,5 @@
       apt: pkg=language-pack-en  
     - name: install git
       apt: pkg=git
+    - name: clone repo
+      git: repo=https://github.com/JJ/devops-days.git dest=devops-days 
