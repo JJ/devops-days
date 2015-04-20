@@ -1,5 +1,7 @@
 /* global module:false */
 module.exports = function(grunt) {
+    require('load-grunt-tasks')(grunt);
+
     var port = grunt.option('port') || 8000;
     // Project configuration
     grunt.initConfig({
@@ -15,11 +17,11 @@ module.exports = function(grunt) {
                 ' * Copyright (C) 2015 JJ Merelo, http://jj.github.io (nuevo contenido)\n' +
                 ' */'
         },
-        
+
         qunit: {
             files: [ 'test/*.html' ]
         },
-        
+
         sass: {
             core: {
                 files: {
@@ -42,13 +44,13 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         autoprefixer: {
             dist: {
                 src: 'css/reveal.css'
             }
         },
-        
+
         cssmin: {
             compress: {
                 files: {
@@ -56,7 +58,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         jshint: {
             options: {
                 curly: false,
@@ -81,7 +83,7 @@ module.exports = function(grunt) {
             },
             files: [ 'Gruntfile.js', 'js/reveal.js' ]
         },
-        
+
         connect: {
             server: {
                 options: {
@@ -92,7 +94,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         zip: {
             'reveal-js-presentation.zip': [
                 'index.html',
@@ -103,7 +105,7 @@ module.exports = function(grunt) {
                 'plugin/**'
             ]
         },
-        
+
         watch: {
             options: {
                 livereload: true
@@ -125,46 +127,35 @@ module.exports = function(grunt) {
             }
         },
 
-	shell: {
+  shell: {
             options: {
-		stderr: false
+    stderr: false
             },
             target: {
-		command: 'ls' //'echo '+process.env.AZ_USERNAME+" "+process.env.AZ_PASSWD
+    command: 'ls' //'echo '+process.env.AZ_USERNAME+" "+process.env.AZ_PASSWD
             }
-	}
-        
+  }
+
     });
-    
-    // Dependencies
-    grunt.loadNpmTasks( 'grunt-contrib-qunit' );
-    grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-    grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-    grunt.loadNpmTasks( 'grunt-contrib-watch' );
-    grunt.loadNpmTasks( 'grunt-sass' );
-    grunt.loadNpmTasks( 'grunt-contrib-connect' );
-    grunt.loadNpmTasks( 'grunt-autoprefixer' );
-    grunt.loadNpmTasks( 'grunt-zip' );
-    grunt.loadNpmTasks( 'grunt-shell' );
-    
+
     // Default task
     grunt.registerTask( 'default', [ 'css', 'js' ] );
-    
+
     // Theme CSS
     grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
-    
+
     // Core framework CSS
     grunt.registerTask( 'css-core', [ 'sass:core', 'autoprefixer', 'cssmin' ] );
-    
+
     // All CSS
     grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
-    
+
     // Package presentation to archive
     grunt.registerTask( 'package', [ 'default', 'zip' ] );
-    
+
     // Serve presentation locally
     grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
-    
+
     // Run tests
     grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
 
