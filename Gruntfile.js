@@ -123,7 +123,16 @@ module.exports = function(grunt) {
             html: {
                 files: [ 'index.html']
             }
-        }
+        },
+
+	shell: {
+            options: {
+		stderr: false
+            },
+            target: {
+		command: 'ls' //'echo '+process.env.AZ_USERNAME+" "+process.env.AZ_PASSWD
+            }
+	}
         
     });
     
@@ -136,6 +145,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( 'grunt-contrib-connect' );
     grunt.loadNpmTasks( 'grunt-autoprefixer' );
     grunt.loadNpmTasks( 'grunt-zip' );
+    grunt.loadNpmTasks( 'grunt-shell' );
     
     // Default task
     grunt.registerTask( 'default', [ 'css', 'js' ] );
@@ -157,5 +167,8 @@ module.exports = function(grunt) {
     
     // Run tests
     grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+
+    // Run tests
+    grunt.registerTask( 'vm', [ 'shell' ] );
 
 };
