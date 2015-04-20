@@ -1,0 +1,8 @@
+---
+- hosts: azure
+  remote_user: jjmerelo
+  sudo: yes
+  tasks:
+    - name: test connection
+      ping:
+      remote_user: jjmerelo
