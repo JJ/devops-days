@@ -6,3 +6,9 @@
     - name: test connection
       ping:
       remote_user: jjmerelo
+    - name: configure locale es
+      apt: pkg=language-pack-es 
+    - name: configure locale en
+      apt: pkg=language-pack-en  
+    - name: install git
+      apt: pkg=git
