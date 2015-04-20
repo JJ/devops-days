@@ -6,6 +6,8 @@
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
+    "vm": "./createvm.sh $AZ_USERNAME $AZ_PASSWD",
+    "provision": "ansible-playbook stuff/playbook.yml -i stuff/hosts.txt",
     "start": ""
   },
   "author": {
