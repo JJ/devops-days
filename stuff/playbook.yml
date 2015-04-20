@@ -3,14 +3,14 @@
   remote_user: jjmerelo
   sudo: yes
   tasks:
-    - name: test connection
-      ping:
-      remote_user: jjmerelo
-    - name: configure locale es
-      apt: pkg=language-pack-es 
-    - name: configure locale en
-      apt: pkg=language-pack-en  
-    - name: install git
-      apt: pkg=git
+    - name: install packages
+      apt: pkg={{ item}}
+      with_items:
+        - language-pack-en 
+        - language-pack-es 
+        - git 
+        - curl 
+        - build-essential 
+        - libssl-dev
     - name: clone repo
       git: repo=https://github.com/JJ/devops-days.git dest=devops-days 
