@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function(grunt) { //  -*-Javascript-*-
   'use strict';
 
   require('load-grunt-tasks')(grunt);
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
             exports: false
         }
       },
-      files: [ 'Gruntfile.js', 'js/reveal.js' ]
+      files: [ 'js/reveal.js' ]
     },
     connect: {
       server: {
