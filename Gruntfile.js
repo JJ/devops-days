@@ -1,6 +1,6 @@
-'use strict';
-
 module.exports = function(grunt) {
+  'use strict';
+
   require('load-grunt-tasks')(grunt);
 
   var port = grunt.option('port') || 8000;
@@ -78,9 +78,10 @@ module.exports = function(grunt) {
         globals: {
             head: false,
             module: false,
+            define: false,
+            require: true,
             console: false,
             unescape: false,
-            define: false,
             exports: false
         }
       },
