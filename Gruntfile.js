@@ -129,14 +129,18 @@ module.exports = function(grunt) {
         files: [ 'index.html']
       }
     },
-    shell: {
-      options: {
-        stderr: false
-      },
-      target: {
-        command: 'ls'
+
+     shell: {
+	 options: {
+             stderr: false
+	 },
+	 vm: {
+             command: './createvm.sh process.env.AZ_USERNAME process.env.AZ_PASSWD'
+	 },
+	 provision: {
+	     command: 'ansible-playbook stuff/playbook.yml -i stuff/hosts.txt'
+	 }
       }
-    }
 
   });
 
@@ -164,4 +168,5 @@ module.exports = function(grunt) {
   // Run vm
   grunt.registerTask( 'vm', [ 'shell' ] );
 
+    
 };
