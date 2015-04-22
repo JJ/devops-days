@@ -383,7 +383,9 @@ Reveal.initialize({ pdf: true });
 		  tests en cuanto que o hayan hecho. </aside>
 	      </section>
 
-	      <section data-background='https://farm4.staticflickr.com/3644/3451948766_4830e003b9_o_d.jpg'>
+	      <section
+	      data-background='https://farm4.staticflickr.com/3644/3451948766_4830e003b9_o_d.jpg'
+	      alt='ramas entrelazadas'>
 	
 		<aside class='notes'>Las ramas que se van creando se
 	      fusionan de forma continua, varias veces al día, tras
@@ -444,7 +446,9 @@ Hay muchos
 		fácilmente despliegue a PaaS como Heroku y en algunos
 		casos OpenShift, de forma que de integración continua
 		a despliegue continuo, en realidad, sólo hay un paso
-		  en el pipeline</aside>
+		  en el pipeline que lleva directamente a la <a
+		href='http://de.wikipedia.org/wiki/Continuous_Delivery'>integración
+		  continua</a>.</aside>
 	      </section>
 
 	      <section>
@@ -457,6 +461,56 @@ Hay muchos
 		  otra historia.</aside>
 	      </section>
 
+	      <section
+	      data-background='https://farm8.staticflickr.com/7356/9112281601_81749f7938_k_d.jpg'>
+		<aside class='notes'>En una IaaS como Azure hay que
+	      partir de la raíz para crear toda la infraestructura
+	      para que se despliegue la aplicación, a tres niveles:
+	      creación (o recreación) de la máquina virtual,
+	      instalación de la infraestructura para ello en la
+	      máquina virtual ya ejecutándose y, finalmente,
+		  instalación y ejecución de la aplicación en
+	      sí. Conviene en este punto distinguir entre <a
+	      href='https://puppetlabs.com/blog/continuous-delivery-vs-continuous-deployment-whats-diff'>despliegue
+		  y pase a producción (<em>delivery</em>)
+	      continuo</a>. En el segundo puede haber un paso manual,
+	      que separe la posibilidad del pase a producción del pase
+	      en sí. En el despliegue continuo, cada vez que se
+	      integra se pasa automáticamente a producción.</aside>
+
+	      </section>
+
+	      <section>
+		<h2>Creando la máquina</h2>
+
+		<pre><code data-trim>#!/bin/bash
+azure vm create devops-days -o vmdepot-51465-1-32 -l "West Europe" $1 $2 --ssh
+azure vm endpoint create-multiple devops-days 80:80,443:443
+ssh-copy-id -i ~/.ssh/id_rsa.pub $1@devops-days.cloudapp.net</code></pre>
+
+		<aside class='notes'>Con esto se crea la máquina
+		  virtual a partir de un id de <a href='https://vmdepot.msopentech.com/'>VMDepot</a>. Se podría haber creado
+		  con <a
+		href='https://github.com/MSOpenTech/vagrant-azure'>Vagrant</a>,
+		en general, necesitarás una herramienta de
+		orquestación que actúe a nivel de hipervisor. Vagrant
+		es mucho más general, por supuesto, incluso Puppet u
+		otras herramientas por el estilo. Pero esencialmente
+		lo que se hace es lo que se muestra: definir qué
+		imagen se va a usar en la máquina y alguna
+		configuración adicional, integrando finalmente una
+		  clave pública para poder conectarte. En la creación
+		  de máquinas se ha optado por una con node ya
+		  instalado, aunque no hay ningún problema con hacerlo
+		  con una de las imágenes que provee Azure (o
+		  cualquier otro servicio). Vagrant tiene el problema
+		  adicional de tener que subir la máquina
+		  preconfigurada, sin embargo con esto se hace
+		  rápidamente y online. 
+		</aside>
+	      </section>
+
+	      </section>
 	      <!-- Diapo final -->
 	      <section>
 		<img src='img/questions.png' alt='any question?'>
@@ -514,6 +568,10 @@ Hay muchos
 		<li class='credits'><a
 				  href='https://www.flickr.com/photos/nauright/3451948766'>Treebranches
 		  por romana klee</a>.</li>
+
+		<li class='credits'><a
+		href='https://www.flickr.com/photos/kiuko/9112281601'>Raíces
+		  de Kiuko</a></li>
 
 				  </ol>
 
