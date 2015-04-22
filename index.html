@@ -546,7 +546,24 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub $1@devops-days.cloudapp.net</code></pre>
 	      fundamental) y finalmente mato el HTTPd que no sé por
 	      qué diablos está activado. Ansible puede llegar hasta
 	      donde uno quiera... 
-</aside>
+		</aside>
+	      </section>
+
+	      <section>
+		<h1>¿Y el código?</h1>
+
+		<pre><code data-trim>---
+- hosts: azure
+  remote_user: jjmerelo
+  tasks:
+    - name: clone repo
+      git: repo=https://github.com/JJ/devops-days.git dest=devops-days
+		</code></pre>
+
+		<aside class='notes'>Si no se van a desplegar
+		proyectos diferentes, conviene descargar el repo
+		  original para trabajar sobre él.</aside>
+
 	      </section>
 
 	      </section>
