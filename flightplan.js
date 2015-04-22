@@ -10,11 +10,14 @@ plan.target('azure', {
 
 // Local
 plan.local(function(local) {
-  local.echo('hello from your localhost.');
+    local.echo('Plan local: push changes');
+    local.exec('git push');
 });
 
 // run commands on the target's remote hosts
 plan.remote(function(remote) {
-    remote.log('Testing');
-    remote.ls('-alt');
+    remote.log('Pull');
+    remote.with('cd devops-days',function() {
+	remote.sudo('git pull');
+    });
 });

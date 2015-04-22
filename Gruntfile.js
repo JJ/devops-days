@@ -139,7 +139,10 @@ module.exports = function(grunt) { //  -*-Javascript-*-
 	 },
 	 provision: {
 	     command: 'ansible-playbook stuff/playbook.yml -i stuff/hosts.txt'
-	 }
+	 },
+	 gitclone: {
+	     command: 'ansible-playbook stuff/git.playbook.yml -i stuff/hosts.txt'
+	 },
       }
 
   });

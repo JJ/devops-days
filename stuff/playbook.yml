@@ -12,5 +12,3 @@
         - curl 
         - build-essential 
         - libssl-dev
-    - name: clone repo
-      git: repo=https://github.com/JJ/devops-days.git dest=devops-days 
