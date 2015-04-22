@@ -90,122 +90,129 @@
 		  ese concepto</aside>
 	      </section>
 
-				<section
-				  data-background='https://farm6.staticflickr.com/5573/14667856750_7f34fac0ca_k_d.jpg'
-				  alt='tubería verde'>
-				  <aside class="notes">Un sistema de
-				  despliegue (o reparto) continuo se
-				  integra en una tubería o
-				     <em>pipeline</em> que trata de
-				  asegurar que, en cada paso, el
-				  producto sea el correcto. Y bonito y
-				     verde. Y que todo el mundo sea
-				  feliz.</aside>
-				</section>
-
-				<section
-				  data-background='https://farm3.staticflickr.com/2011/2332987323_9f21439826_b_d.jpg'
-				  alt='big red button'>
-				  <aside class="notes">Volvemos al
-				  botón: desde una máquina virtual
-				  "vacía", sin provisionar, el botón
-				  activa las diferentes etapas del
-				  pipeline para que esa  máquina virtual
-				  en la nube se pueda provisionar desde 0 y que lo que se
-				  despliegue se sepa que va a
-				  funcionar porque ha pasado los tests
-				    (y, en su caso, la aprobación del
-				  cliente).</aside>
-				</section>
+	      <section
+		data-background='https://farm6.staticflickr.com/5573/14667856750_7f34fac0ca_k_d.jpg'
+alt='tubería verde'>
+		<aside class="notes">Un sistema de
+		  despliegue (o reparto) continuo se
+		  integra en una tubería o
+		  <em>pipeline</em> que trata de
+		  asegurar que, en cada paso, el
+		  producto sea el correcto. Y bonito y
+		  verde. Y que todo el mundo sea
+		  feliz.</aside>
+	      </section>
+	      
+	      <section
+		data-background='https://farm3.staticflickr.com/2011/2332987323_9f21439826_b_d.jpg'
+alt='big red button'>
+		<aside class="notes">Volvemos al
+		  botón: desde una máquina virtual
+		  "vacía", sin provisionar, el botón
+		  activa las diferentes etapas del
+		  pipeline para que esa  máquina virtual
+		  en la nube se pueda provisionar desde 0 y que lo que se
+		  despliegue se sepa que va a
+		  funcionar porque ha pasado los tests
+		  (y, en su caso, la aprobación del
+		  cliente).</aside>
+	      </section>
 				  
-				<section
-				  data-background='img/git-push-by-Jpellgen.jpg' img='git push'>
+	      <section
+		data-background='img/git-push-by-Jpellgen.jpg' img='git push'>
+		
+		<aside class='notes'>El pipeline, en
+		  sí, está alimentado por
+		  <em>git</em>, el estándar para
+		  gestionar fuentes y más allá, de
+		  trabajo en grupo y también,
+		  evidentemente, de integración y
+		  despliegue continuo. Cada avance y
+		  retroalimentación del pipeline
+		  necesita un comando de
+		  git.</aside>
+		
+	      </section>
+	      
+	      <section data-background='img/ramas-by-Kasia.jpg' alt='ramas by Kasia'>
+		<aside class='notes'>Normalmente
+		  empieza por la organización del
+		  trabajo en el repositorio en varias
+		  ramas, una de las cuales es la
+		  <code>master</code> que
+		  eventualmente será desplegada,
+		  usando reglas prácticas como
+		  <em>todo lo que hay en la master es
+		    desplegable</em>. Puede haber ramas
+		  de pruebas y una rama de desarrollo
+		  en donde se puedan testear
+		  diferentes elementos hasta que estén
+		  listos para el despliegue.
+		</aside>
+	      </section>
+	      
+	      <section
+		data-background='https://farm4.staticflickr.com/3529/3175297773_edf3617df7_b_d.jpg'
+		'Enganches o ganchos'>
+		<aside class='notes'>git es un
+		  sistema de ficheros direccionado por
+		  contenido y consigue actuar de
+		  múltiples formas diferentes usando
+		  <em>hooks</em> o ganchos. Cuando
+		  ocurre un evento determinado entre
+		  <a
+		    href='http://git-scm.com/book/es/v2/Customizing-Git-Git-Hooks'>la
+		    docena</a> definida, se puede
+		  ejecutar una orden con una
+		  <em>carga</em> que depende del
+		  evento. Estos ganchos pueden actuar
+		  también como válvulas, permitiendo o
+		  impidiendo que se ejecute la etapa
+		  siguiente del <em>pipeline</em>. Por
+		  ejemplo, no se permite un cambio si
+		  no pasa unos tests de aceptabilidad
+		  determinados (convenciones de
+		  programación, por ejemplo, o
+		  corrección sintáctica, sin meternos
+		  en la funcionalidad, que se puede
+		  probar en otra etapa). 
+	      </section>
+	      
+	      <section 
+		data-background='https://farm4.staticflickr.com/3360/3503466579_77f544315f_b_d.jpg'
+alt='push to paas'>
+		
+		<aside class='notes'>En el caso de
+		  los PaaS, como los Azure Websites,
+		  lo único que hace falta para
+		  publicar es hacer
+		  <code>push</code>; se usa en caso de
+		  código estático (como este) o,
+		  simplemente, si los tests se pasan
+		  localmente en vez de
+		  remotamente. Por
+		  ejemplo, <a href='http://ddays.azurewebsites.net/#/'>estas transpas desplegadas
+		    estáticamente en Azure
+		    Websites</a>, previa configuración a
+		  través del panel de control de Azure
+		  y especificación del sitio en
+		  Github. Otros PaaS como Heroku
+		  u Openshift tampoco exigen pasar
+		  todo tipo de tests internos: push y
+		  se publica, aunque en este caso se
+		  hace push directamente al
+		  repositorio y no a GitHub que está
+		  "enganchado" con Azure. Por eso git es, entre
+		  todas, la única herramienta
+		  imprescindible para usar es git. Los
+		  <em>ganchos</em> de git, tanto del lado del cliente
+		  (al activar el despliegue) como del lado del
+		  servidor (al copiar si es necesario al sistema de
+		  ficheros los nuevos elementos) son los que se
+		  encargan de hacer este despliegue. </aside>
+	      </section>
 
-				  <aside class='notes'>El pipeline, en
-				    sí, está alimentado por
-				    <em>git</em>, el estándar para
-				    gestionar fuentes y más allá, de
-				    trabajo en grupo y también,
-				    evidentemente, de integración y
-				    despliegue continuo. Cada avance y
-				    retroalimentación del pipeline
-				    necesita un comando de
-				    git.</aside>
-
-				</section>
-
-				<section data-background='img/ramas-by-Kasia.jpg' alt='ramas by Kasia'>
-				  <aside class='notes'>Normalmente
-				  empieza por la organización del
-				  trabajo en el repositorio en varias
-				    ramas, una de las cuales es la
-				  <code>master</code> que
-				  eventualmente será desplegada,
-				  usando reglas prácticas como
-				  <em>todo lo que hay en la master es
-				  desplegable</em>. Puede haber ramas
-				  de pruebas y una rama de desarrollo
-				  en donde se puedan testear
-				  diferentes elementos hasta que estén
-				  listos para el despliegue.
-				  </aside>
-				</section>
-
-				
-				<section 
-				  data-background='https://farm4.staticflickr.com/3360/3503466579_77f544315f_b_d.jpg'
-				  alt='push to paas'>
-				  
-				  <aside class='notes'>En el caso de
-				  los PaaS, como los Azure Websites,
-				  lo único que hace falta para
-				    publicar es hacer
-				  <code>push</code>; se usa en caso de
-				  código estático (como este) o,
-				  simplemente, si los tests se pasan
-				  localmente en vez de
-				  remotamente. Por
-				  ejemplo, <a href='http://ddays.azurewebsites.net/#/'>estas transpas desplegadas
-				    estáticamente en Azure
-				  Websites</a>, previa configuración a
-				  través del panel de control de Azure
-				  y especificación del sitio en
-				  Github. Otros PaaS como Heroku
-				  u Openshift tampoco exigen pasar
-				  todo tipo de tests internos: push y
-				  se publica, aunque en este caso se
-				  hace push directamente al
-				  repositorio y no a GitHub que está
-				  "enganchado" con Azure. Por eso git es, entre
-				  todas, la única herramienta
-				  imprescindible para usar es git.  </aside>
-				</section>
-
-				<section
-				  data-background='https://farm4.staticflickr.com/3529/3175297773_edf3617df7_b_d.jpg'>
-				  <aside class='notes'>git es un
-				  sistema de ficheros direccionado por
-				  contenido y consigue actuar de
-				    múltiples formas diferentes usando
-				  <em>hooks</em> o ganchos. Cuando
-				  ocurre un evento determinado entre
-				  <a
-				  href='http://git-scm.com/book/es/v2/Customizing-Git-Git-Hooks'>la
-				  docena</a> definida, se puede
-				  ejecutar una orden con una
-				  <em>carga</em> que depende del
-				  evento. Estos ganchos pueden actuar
-				  también como válvulas, permitiendo o
-				  impidiendo que se ejecute la etapa
-				  siguiente del <em>pipeline</em>. Por
-				  ejemplo, no se permite un cambio si
-				  no pasa unos tests de aceptabilidad
-				  determinados (convenciones de
-				  programación, por ejemplo, o
-				  corrección sintáctica, sin meternos
-				  en la funcionalidad, que se puede
-				  probar en otra etapa). 
-				</section>
+	
 
 				<section 
 				  data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'>
