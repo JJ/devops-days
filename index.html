@@ -335,7 +335,38 @@ Reveal.initialize({ pdf: true });
 		  aserciones. Por ejemplo, <code>mocha</code> con
 		  <code>supertest</code> o con <code>should.js</code></aside>
 	      </section>
-	      
+
+	      <section
+		data-background-transition='zoom'>
+		<pre><code data-trim>it('should set result right', function (done) {
+	request(app)
+	    .post('/porra/resultado/liga/2014/mad/2/bcn/2')
+	    .expect('Content-Type', /json/)
+	    .expect(200)
+	    .end( function ( error, resultado ) {
+		if ( error ) {
+		    return done( error );
+		}
+                resultado.body.should.exist;
+		resultado.body.should.have.property('resultado','2-2');
+		done();
+	    });
+    });
+		</code></pre>
+		<aside class='notes'>Este código no es de esta charla,
+		pero es que en esta charla tampoco me iba a poner a
+		escribirlo. Forma parte, sí, de la aplicación de <a href='https://www.amazon.es/dp/B00SDLIGC2?tag=atalaya-21&camp=3634&creative=24822&linkCode=as4&creativeASIN=B00SDLIGC2&adid=1N81P2VW6PEY1MNFBKNG&'>mi
+		  libro <em>Nuboso, con probabilidad de
+		despliegue</em> (¿alguien se pensó que iba a venir
+		  aquí y no hablar de mi libro?) y usa <a
+		href='https://github.com/shouldjs'>Should.js</a>, un
+		módulo de aserciones para desarrollo basado en
+		comportamiento y que permite escribir en tests cosas
+		como estas: esto tiene que ser así de verdad de la
+		buena, venga, va, que esto sale, que sí, que ya lo
+		  tienes. Mola por eso.</a>
+		</aside>
+	      </section>
 
 	      <!-- Diapo final -->
 	      <section>
