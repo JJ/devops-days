@@ -12,3 +12,8 @@
         - curl 
         - build-essential 
         - libssl-dev
+    - name: install globals node
+      command: "npm install -g grunt-cli"
+    - name: stop http
+      action: shell pkill httpd
+      ignore_errors: True

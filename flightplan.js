@@ -18,6 +18,11 @@ plan.local(function(local) {
 plan.remote(function(remote) {
     remote.log('Pull');
     remote.with('cd devops-days',function() {
-	remote.sudo('git pull');
+	remote.exec('git pull');
+	remote.exec('npm install .');
+    });
+    // Camino completo por sudo
+    remote.with('cd /home/jjmerelo/devops-days',function() {
+	remote.sudo('grunt serve --port=80');
     });
 });
