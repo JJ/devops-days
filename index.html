@@ -566,7 +566,55 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub $1@devops-days.cloudapp.net</code></pre>
 
 	      </section>
 
+	      <section>
+		<h2>Tenemos un plan</h2>
+
+		<pre><code data-trim>var plan = require('flightplan');
+// configuration
+plan.target('azure', {
+  host: 'devops-days.cloudapp.net',
+  username: 'jjmerelo',
+  agent: process.env.SSH_AUTH_SOCK
+});
+plan.local(function(local) { // Local
+    local.echo('Plan local: push changes');
+    local.exec('git push');
+});
+plan.remote(function(remote) { // run commands on the target's remote hosts
+    remote.log('Pull');
+    remote.with('cd devops-days',function() {
+	remote.exec('git pull');
+	remote.exec('npm install .');
+    });
+    remote.with('cd /home/jjmerelo/devops-days',function() {
+	remote.sudo('grunt serve --port=80');
+    });
+});</code></pre>
+		<aside class='notes'><a
+		  href='https://github.com/pstadler/flightplan'>FlightPlan
+		  es una herramienta de node</a> para despliegue de
+		  aplicaciones. Si uno tiene el toolbelt de node ya
+		  instalado, es uno más. Si no lo tiene, se puede usar
+		  cualquier otra. Generalmente, las herramientas de
+		  despliegue como esta, o Fabric, o Capistrano, no
+		  necesitan nada en el destino, permiten ejecutar un
+		  plan de despliegue, incluyendo finalmente la
+		  ejecución si es necesario (o rearrancar la
+		  aplicación si lo es).</aside>
+
 	      </section>
+
+	      <section data-background='img/flightplan.png'
+	      alt='ejecutando flightplan'>
+		<aside class='notes'>flighplan no es perfecto (ni yo
+	      un experto), pero hace su trabajo correctamente y con
+	      muchos colorines. De hecho, todo se puede colocar en un
+	      gran botón rojo, regido por Grunt, que lo haga todo:
+	      pasar los tests, si pasan provisionar la máquina, si lo
+	      hace también desplegar. ¡Despliegue continuo! ¡Gran
+		  botón rojo!</aside>
+	      </section>
+
 	      <!-- Diapo final -->
 	      <section>
 		<img src='img/questions.png' alt='any question?'>
