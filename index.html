@@ -214,43 +214,95 @@ alt='push to paas'>
 
 	
 
-				<section 
-				  data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'>
-				  <aside class='notes'>La prueba es
-				  imprescindible en un flujo de
-				  trabajo de integración/despliegue
-				  continuo. Cada una de las fases debe
-				  de ir acompañada de una prueba a
-				  todos los niveles. <a href='http://en.wikipedia.org/wiki/Test-driven_development'>Desarrollo basado
-				    en prueba</a> o en comportamiento
-				    (que describe en lenguaje
-				  <em>natural</em> qué pruebas deben
-				  pasarse) son las herramientas
-				  fundamentales del mismo. </aside>
-				</section>
+	      <section 
+		data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'>
+		<aside class='notes'>La prueba es
+		  imprescindible en un flujo de
+		  trabajo de integración/despliegue
+		  continuo. Cada una de las fases debe
+		  de ir acompañada de una prueba a
+		  todos los niveles. <a href='http://en.wikipedia.org/wiki/Test-driven_development'>Desarrollo basado
+		  en prueba</a> o en comportamiento
+		  (que describe en lenguaje
+		  <em>natural</em> qué pruebas deben
+		  pasarse) son las herramientas
+		  fundamentales del mismo. </aside>
+	      </section>
+	      
+	      <section
+		data-background='https://farm6.staticflickr.com/5524/12000389034_6517be727f_k_d.jpg'>
+		<aside class='notes'>Las
+		  herramientas de construcción son las
+		  que sirven para alimentar el pipeline
+		  y lo conectan con el gran botón de
+		  reparto de todo. En general, las
+		  <em>build tools</em> son
+		  herramientas que permiten ejecutar
+		  tareas, incluyendo la propia
+		  <em>construcción</em> del programa que
+		  se vaya a  publicar, pero no sólo:
+		  empaquetamiento, comprobación y, por
+		  supuesto, ejecución de tests entre las
+		  diferentes tareas que se pueden ejecutar. </aside>
+	      </section>
 
-				<section
-				data-background='https://farm6.staticflickr.com/5524/12000389034_6517be727f_k_d.jpg'>
-				  <aside class='notes'>Las
-				herramientas de construcción son las
-				que sirven para alimentar el pipeline
-				y lo conectan con el gran botón de
-				reparto de todo. En general, las
-				    <em>build tools</em> son
-				herramientas que permiten ejecutar
-				    tareas, incluyendo la propia
-				<em>construcción</em> del programa que
-				se vaya a  publicar, pero no sólo:
-				empaquetamiento, comprobación y, por
-				supuesto, ejecución de tests entre las
-				diferentes tareas que se pueden ejecutar. </aside>
-				</section>
+	      <section>
+		<pre><code data-trim>module.exports = function(grunt) { //  -*-Javascript-*-
+  require('load-grunt-tasks')(grunt);
+  var port = grunt.option('port') || 8000;
+  // Project configuration
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    meta: {
+      banner:
+        ' * DevOpsOSSAzureDays presentation <%= pkg.version %>' +
+        ' (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
+        ' * http://github.com/JJ/devops-days\n' +
+        ' * Apache licensed...\n' +
+    },
+    qunit: {
+      files: [ 'test/*.html' ]
+    },
+  });
+  // Run tests
+  grunt.registerTask( 'test', [ 'qunit' ] );    
+};
+		</code></pre>
 
-				<section>
-				  <h1>Muchas gracias</h1>
-
-				  <p>Descarga esto de <a hfer='http://github.com/JJ/devops-days'><code>git.io/ci-cd</code></a>
-				  </p>
+		<aside class='notes'>Ya iba siendo hora de tener un
+	      código en condiciones, hombre ya, tanta fotico tanta
+	      fotico. ¡Y ni siquiera una de gaticos! Vamos al turrón:
+	      se trata de un Gruntfile, un *file de los que hay por
+	      kilos y cuya loqueseafile se comenzó con los venerables
+		  (alguien diría vetustos) <code>makefiles</code>. Los
+	      ficheros "de construcción" son una herramienta más
+	      fundamental todavía que la programación en sí: permiten
+	      conocer y explicitar los pasos necesarios para desplegar
+	      o instalar un programa y normalmente tienen la
+	      flexibilidad suficiente para hacerlo. Grunt tiene como
+	      símbolo un marrano jabalí, y a veces trabajar con él
+	      puede ser tan fácil como tratar de enseñar a sentarse a
+	      este simpático animalito. Pero si no te gusta, siempre
+		  tienes <code>Gulp</code> o incluso el Makefile, que
+	      sirve para cualquier lenguaje de programación. Hay
+	      muchas herramientas de este tipo que se han hecho
+		  populares: <code>Rake</code> para Ruby,
+	      <code>Maven</code> para Java y seguramente otras muchas
+	      que desconozco. La mayoría de las herramientas son de
+	      propósito general, pero simplemente por minimizar las
+	      herramientas a instalar en el caso de un despliegue se
+	      suele usar la apropiada para el lenguaje en concreto (o
+	      una de ellas). A mi grunt me parece espantoso, pero <a
+	      href='http://markdalgleish.github.io/presentation-build-wars-gulp-vs-grunt/'>para
+		gustos colores</a>.
+		</aside>
+	      </section>
+	      
+	      <section>
+		<h1>Muchas gracias</h1>
+		
+		<p>Descarga esto de <a hfer='http://github.com/JJ/devops-days'><code>git.io/ci-cd</code></a>
+		</p>
 				</section>
 
 				<section>
@@ -307,22 +359,23 @@ alt='push to paas'>
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+			  width: 994,
+			  controls: true,
+			  progress: true,
+			  history: true,
+			  center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+			  transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
+			  // Optional reveal.js plugins
+			  dependencies: [
+			    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+			    { src: 'plugin/zoom-js/zoom.js', async: true },
+			    { src: 'plugin/notes/notes.js', async: true }
+			  ]
 			});
 
 		</script>
