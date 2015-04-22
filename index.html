@@ -204,12 +204,19 @@ alt='push to paas'>
 		  repositorio y no a GitHub que está
 		  "enganchado" con Azure. Por eso git es, entre
 		  todas, la única herramienta
-		  imprescindible para usar es git. Los
+		  imprescindible. Los
 		  <em>ganchos</em> de git, tanto del lado del cliente
 		  (al activar el despliegue) como del lado del
 		  servidor (al copiar si es necesario al sistema de
 		  ficheros los nuevos elementos) son los que se
-		  encargan de hacer este despliegue. </aside>
+		  encargan de hacer este despliegue. Aparte de los
+		  ganchos puede que haga falta alguna herramienta
+		  adicional, como un supervisor de cambios o un
+		  servidor web. Pero en muchos casos, <a href='https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps'><code>git push</code> y un
+		    <code>post-receive</code> <em>hook</em></a> es todo lo
+		  que hace falta. En otros casos, usar también <a
+		  href='https://danbarber.me/using-git-for-deployment/'>git
+		      en el sitio de despliegue es conveniente.</a></aside>
 	      </section>
 
 	
