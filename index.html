@@ -246,7 +246,7 @@ alt='push to paas'>
 		  diferentes tareas que se pueden ejecutar. </aside>
 	      </section>
 
-	      <section>
+	      <section data-background-transition="zoom">
 		<pre><code data-trim>module.exports = function(grunt) { //  -*-Javascript-*-
   require('load-grunt-tasks')(grunt);
   var port = grunt.option('port') || 8000;
@@ -294,8 +294,39 @@ alt='push to paas'>
 	      suele usar la apropiada para el lenguaje en concreto (o
 	      una de ellas). A mi grunt me parece espantoso, pero <a
 	      href='http://markdalgleish.github.io/presentation-build-wars-gulp-vs-grunt/'>para
-		gustos colores</a>.
+		gustos colores</a>. Grunt es más bien igual a
+	      configuración, es decir, declaraciones estáticas,
+	      <em>funcionales</em>, de lo que uno quiere. Gulp permite
+	      escribir código para hacerlo.
 		</aside>
+	      </section>
+
+	      <section>
+		<pre><code data-trim>Reveal.addEventListener( 'ready', function() {
+	test( 'Reveal.isReady', function() {
+		strictEqual( Reveal.isReady(), true, 'returns true' );
+	});
+} );
+
+Reveal.initialize({ pdf: true });
+		</code></pre>
+		<aside class='notes'>Los test unitarios, como en este
+		caso, revelan los posibles errores en la funcionalidad
+		que uno quiere que tenga. En este caso, la
+		funcionalidad de generar un PDF a partir de esta
+		  presentación (que incluya estas notas, imagino).</aside>
+	      </section>
+
+	      <section 
+		data-background='img/you-should-by-cursedthing.jpg'
+		alt='You should'>
+		<aside class='notes'>Los tests se dividen en
+		aserciones y marcos. Las aserciones pueden ser basadas
+		en el comportamiento o no; en el primer caso se afirma
+		o no qué debería hacer cada una de las cosas. Los
+		marcos permiten trabajar con diferentes librerías de
+		  aserciones. Por ejemplo, <code>mocha</code> con
+		  <code>supertest</code> o con <code>should.js</code></aside>
 	      </section>
 	      
 	      <section>
@@ -344,6 +375,9 @@ alt='push to paas'>
 				    <li
 				  class='credits'><a href='https://www.flickr.com/photos/57412095@N05/12000389034'>Herramientas
 				      por A Yee</a></li>
+				    <li class='credits'><a
+				  href='https://www.flickr.com/photos/cursedthing/2109352947'>Sábana
+				      con should por cursedthing</a></li>
 				  </ol>
 				</section>
 
@@ -365,7 +399,7 @@ alt='push to paas'>
 			  history: true,
 			  center: true,
 
-			  transition: 'slide', // none/fade/slide/convex/concave/zoom
+			  transition: 'concave', // none/fade/slide/convex/concave/zoom
 
 			  // Optional reveal.js plugins
 			  dependencies: [
