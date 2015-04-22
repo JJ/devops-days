@@ -510,6 +510,45 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub $1@devops-days.cloudapp.net</code></pre>
 		</aside>
 	      </section>
 
+	      <section>
+		<h2>Provisionando</h2>
+
+		<pre><code data-trim>---
+- hosts: azure
+  remote_user: jjmerelo
+  sudo: yes
+  tasks:
+    - name: install packages
+      apt: pkg={{ item}}
+      with_items:
+        - language-pack-en 
+        - language-pack-es 
+        - git 
+        - curl 
+        - build-essential 
+        - libssl-dev
+    - name: install globals node
+      command: "npm install -g grunt-cli"
+    - name: stop http
+      action: shell pkill httpd
+      ignore_errors: True</code></pre>
+
+		<aside class='notes'>Uso Ansible por razones que no
+	      puedo revelar aquí por estar Juanje delante. En
+	      realidad, es muy fácil usar Chef con Azure, no hay más
+	      que marcar una casilla y se instala en la VM, pero
+	      Ansible no necesita más instalación que Python (que lo
+	      llevan casi todas las MVs y además un sólo fichero. Y no
+	      hace falta aprender Ruby. Que no tengo nada contra él,
+		  ni contra Chef, pero, que es más fácil y ya está,
+	      ea. En este caso aparte de instalar paquetes instalo el
+	      Grunt (que hace falta, herramienta de construcción
+	      fundamental) y finalmente mato el HTTPd que no sé por
+	      qué diablos está activado. Ansible puede llegar hasta
+	      donde uno quiera... 
+</aside>
+	      </section>
+
 	      </section>
 	      <!-- Diapo final -->
 	      <section>
