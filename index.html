@@ -408,19 +408,33 @@ node_js:
 before_script:
   - npm install -g grunt-cli</code></pre>
 
+		<h3>En Travis</h3>
+		<pre><code>npm test</code></pre>
+
+		<h3>En <code>Gruntfile.js</code></h3>
+		<pre><code data-trim>  "scripts": {
+		  "test": "grunt test",
+	}</code></pre>
+
 		<aside class='notes'>Este es el escueto fichero que se
 	      usa para configurar la integración continua, en este
 		  caso en <a
-	      href='http://travis-ci.org'>Travis</a>. Hay muchos
+	      href='http://travis-ci.org'>Travis</a>, aunque es así
+	      porque usa valores por omisión: npm test, que a su vez
+	      llama a grunt con el valor test, que ya hemos mostrado
+	      previamente en la transpa: tests unitarios con qUnit. 
+Hay muchos
 	      sistemas de integración continua que se pueden usar
 	      online u offline. Jenkins, para el mundo Java, es una de
 	      las más populares y es también software libre (Travis no
 	      lo es, salvo algunas herramientas liberadas). Circle-CI,
-		  Shippable, decenas de herramientas</aside>
+		  Shippable, decenas de herramientas pueden usarse
+	      para esto, cada cual con sus características, sus
+	      lenguajes soportados, su rapidez. </aside>
 	      </section>
 
 	      <section>
-		<h1>Configurando pipelines</h1>
+		<h2>Configurando pipelines</h2>
 		<img src='img/snap-ci.png'>
 
 		<aside class='notes'>SnapCI permite, por ejemplo,
@@ -431,6 +445,16 @@ before_script:
 		casos OpenShift, de forma que de integración continua
 		a despliegue continuo, en realidad, sólo hay un paso
 		  en el pipeline</aside>
+	      </section>
+
+	      <section>
+		<h1>GitHub en medio de todo</h1>
+		<img src='img/pr-ci.png'>
+		<aside class='notes'>Los sistemas de integración
+		continua se integran en el pipeline con GitHub (y
+		bitbucket, imagino, aunque no lo uso) y con los
+		PaaS. Pero cuando se trata de un IaaS como Azure es
+		  otra historia.</aside>
 	      </section>
 
 	      <!-- Diapo final -->
