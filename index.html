@@ -216,10 +216,14 @@ alt='push to paas'>
 		    <code>post-receive</code> <em>hook</em></a> es todo lo
 		  que hace falta. En otros casos, usar también <a
 		  href='https://danbarber.me/using-git-for-deployment/'>git
-		      en el sitio de despliegue es conveniente.</a></aside>
+		      en el sitio de despliegue es
+		  conveniente</a>. Tampoco es cuestión de
+		  entusiasmarse, porque <a
+		  href='http://gitolite.com/deploy.html#different-ways-to-deploy'>git
+		      no es una herramienta de despliegue</a>. Pero
+		  para aplicaciones simples, web y montajes rápidos
+		  puede hacer la labor. </aside>
 	      </section>
-
-	
 
 	      <section 
 		data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'>
@@ -368,6 +372,53 @@ Reveal.initialize({ pdf: true });
 		</aside>
 	      </section>
 
+	        <section>
+		<img src='img/keep-calm-and-integrati-on-2.png'
+		alt='keep calm and integration'>
+	
+		<aside class='notes'>La práctica de <a
+	      href='http://en.wikipedia.org/wiki/Continuous_integration'>integración
+		  continua proviene de la programación extrema</a>, y
+	      se trata de integrar los cambios que hayan pasado los
+		  tests en cuanto que o hayan hecho. </aside>
+	      </section>
+
+	      <section data-background='https://farm4.staticflickr.com/3644/3451948766_4830e003b9_o_d.jpg'>
+	
+		<aside class='notes'>Las ramas que se van creando se
+	      fusionan de forma continua, varias veces al día, tras
+	      pasar los test unitarios y los tests de integración (que
+	      pueden incluir cambios adicionales hechos a la rama
+		  máster desde la separación de la rama. Cuando
+	      llegamos al punto de integración continua ya se ha
+	      recorrido parte del pipeline: repo de código,
+	      automatización de la construcción del mismo, testeo
+	      automático, aparte de otras reglas como que se trabaje
+	      sobre el máster y se acabe fusionando todos los días,
+		  manteniendo la construcción lo más rápida posible. </aside>
+
+	      </section>
+
+	      <section>
+		<h2><code>travis.yml</code></h2>
+		<pre><code data-trim>language: node_js
+node_js:
+  - 0.10
+  - 0.11
+before_script:
+  - npm install -g grunt-cli</code></pre>
+
+		<aside class='notes'>Este es el escueto fichero que se
+	      usa para configurar la integración continua, en este
+		  caso en <a
+	      href='http://travis-ci.org'>Travis</a>. Hay muchos
+	      sistemas de integración continua que se pueden usar
+	      online u offline. Jenkins, para el mundo Java, es una de
+	      las más populares y es también software libre (Travis no
+	      lo es, salvo algunas herramientas liberadas). Circle-CI,
+		  Shippable, decenas de herramientas</aside>
+	      </section>
+
 	      <!-- Diapo final -->
 	      <section>
 		<img src='img/questions.png' alt='any question?'>
@@ -392,35 +443,43 @@ Reveal.initialize({ pdf: true });
 		  <li class='credits'><a
 				  href='https://www.flickr.com/photos/cennydd/4624759422'>Enchufe
 				      por Cennydd Bowles</a></li>
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/98712159@N07/14667856750'>Tubería
-				      por Reinhard H</a></li>
-				    <li class='credits'><a href='https://www.flickr.com/photos/rev_aviator/2332987323'>Botón rojo de
-				      Gord Spence</a></li>
 
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/jpellgen/9327589307'>Push
-				      button fool por
-				  Jpellgen</a></li>
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/mysza/2277332792'>Ice
-				      tips (ramas) por Kasia</a></li>
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/mckln/3503466579'>Push
-				      to PaaS por David Woo</a></li>
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/dannebrog/206978850'>Pies
-				      por dannebrog</a></li>
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/yabanji/3175297773'>Ganchos
-				      por Debbie Long</a></li>
-				    <li
-				  class='credits'><a href='https://www.flickr.com/photos/57412095@N05/12000389034'>Herramientas
-				      por A Yee</a></li>
-				    <li class='credits'><a
-				  href='https://www.flickr.com/photos/cursedthing/2109352947'>Sábana
-				      con should por cursedthing</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/98712159@N07/14667856750'>Tubería
+		    por Reinhard H</a></li>
+		  <li class='credits'><a href='https://www.flickr.com/photos/rev_aviator/2332987323'>Botón rojo de Gord Spence</a></li>
+
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/jpellgen/9327589307'>Push
+		    button fool por
+		    Jpellgen</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/mysza/2277332792'>Ice
+		    tips (ramas) por Kasia</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/mckln/3503466579'>Push
+		    to PaaS por David Woo</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/dannebrog/206978850'>Pies
+		    por dannebrog</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/yabanji/3175297773'>Ganchos
+		    por Debbie Long</a></li>
+		  <li
+		    class='credits'><a href='https://www.flickr.com/photos/57412095@N05/12000389034'>Herramientas
+		    por A Yee</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/cursedthing/2109352947'>Sábana
+		    con should por
+		    cursedthing</a></li>
+
+		<li class='credits'><a
+				  href='https://www.flickr.com/photos/nauright/3451948766'>Treebranches
+		  por romana klee</a>.</li>
+
 				  </ol>
+
+
 				</section>
 
 			</div>
