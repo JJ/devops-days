@@ -49,7 +49,7 @@
 	      </section>
 	      
 	      <section 
-		data-background='https://farm4.staticflickr.com/3092/3085157011_4560528e9e_b_d.jpg'>
+		data-background='https://farm4.staticflickr.com/3092/3085157011_4560528e9e_b_d.jpg' alt='gran botón rojo'>
 		<h1>La importancia del botón</h1>
 		<aside class='notes'>
 		  Uno de los objetivos es automatizar todo el proceso
@@ -64,7 +64,7 @@
 		ya se lió... </aside>
 	      </section>
 
-	      <section data-background='https://farm4.staticflickr.com/3360/3309461038_f1c8935eb0_b_d.jpg'>
+	      <section data-background='https://farm4.staticflickr.com/3360/3309461038_f1c8935eb0_b_d.jpg' alt='abracito de koalas'>
 		<aside class="notes">
 		  La base principal del devops es la
 		  cultura, ayudado por las
@@ -78,12 +78,11 @@
 	      </section>
 
 	      <section
-		data-background='https://farm5.staticflickr.com/4012/4624759422_261746b298_b_d.jpg'>
+		data-background='https://farm5.staticflickr.com/4012/4624759422_261746b298_b_d.jpg' alt='enchufe'>
 		<h1 class='bkg'>ポカヨケ</h1>
 		
 		<aside class="notes">El concepto de
-		  <a
-		    href='http://en.wikipedia.org/wiki/Poka-yoke'>Poka-yoke</a>
+		  <a href='http://en.wikipedia.org/wiki/Poka-yoke'>Poka-yoke (ポカヨケ)</a>
 		  (<em>baka-yoke</em> previamente, o a
 		  prueba de estúpidos) significa a
 		  prueba de equivocaciones, es decir,
@@ -92,12 +91,12 @@
 		  posible. El proceso de despliegue o
 		  <em>reparto</em> (<em>delivery</em>)
 		  es el esquivalente en ingeniería de
-		  ese concepto</aside>
+		  ese concepto.</aside>
 	      </section>
 
 	      <section
-		data-background='https://farm6.staticflickr.com/5573/14667856750_7f34fac0ca_k_d.jpg'
-alt='tubería verde'>
+		 data-background='https://farm6.staticflickr.com/5573/14667856750_7f34fac0ca_k_d.jpg'
+		 alt='tubería verde'>
 		<aside class="notes">Un sistema de
 		  despliegue (o reparto) continuo se
 		  integra en una tubería o
@@ -110,7 +109,7 @@ alt='tubería verde'>
 	      
 	      <section
 		data-background='https://farm3.staticflickr.com/2011/2332987323_9f21439826_b_d.jpg'
-alt='big red button'>
+		 alt='big red button'>
 		<aside class="notes">Volvemos al
 		  botón: desde una máquina virtual
 		  "vacía", sin provisionar, el botón
@@ -135,7 +134,7 @@ alt='big red button'>
 		  despliegue continuo. Cada avance y
 		  retroalimentación del pipeline
 		  necesita un comando de
-		  git.</aside>
+		  <code>git</code>.</aside>
 		
 	      </section>
 	      
@@ -149,7 +148,7 @@ alt='big red button'>
 		  usando reglas prácticas como
 		  <em>todo lo que hay en la master es
 		    desplegable</em>. Puede haber ramas
-		  de pruebas y una rama de desarrollo
+		  varias ramas de pruebas y una rama de desarrollo
 		  en donde se puedan testear
 		  diferentes elementos hasta que estén
 		  listos para el despliegue.
@@ -161,7 +160,8 @@ alt='big red button'>
 		'Enganches o ganchos'>
 		<aside class='notes'>git es un
 		  sistema de ficheros direccionado por
-		  contenido y consigue actuar de
+		  contenido (sí, no un sistema de gestión de fuentes,
+		  o no solo) y distribuido y consigue actuar de
 		  múltiples formas diferentes usando
 		  <em>hooks</em> o ganchos. Cuando
 		  ocurre un evento determinado entre
@@ -180,18 +180,17 @@ alt='big red button'>
 		  programación, por ejemplo, o
 		  corrección sintáctica, sin meternos
 		  en la funcionalidad, que se puede
-		  probar en otra etapa). 
+		  probar en otra etapa). </aside>
 	      </section>
 	      
 	      <section 
 		data-background='https://farm4.staticflickr.com/3360/3503466579_77f544315f_b_d.jpg'
-alt='push to paas'>
+		 alt='push to paas'>
 		
 		<aside class='notes'>En el caso de
 		  los PaaS, como los Azure Websites,
 		  lo único que hace falta para
-		  publicar es hacer
-		  <code>push</code>; se usa en caso de
+		  publicar es hace <code>push</code>; se usa en caso de
 		  código estático (como este) o,
 		  simplemente, si los tests se pasan
 		  localmente en vez de
@@ -231,8 +230,10 @@ alt='push to paas'>
 	      </section>
 
 	      <section 
-		data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'>
-		<aside class='notes'>La prueba es
+		data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'
+		alt='pies'>
+		<aside class='notes'>En montajes un poco más
+		  complejos, la prueba es
 		  imprescindible en un flujo de
 		  trabajo de integración/despliegue
 		  continuo. Cada una de las fases debe
@@ -246,7 +247,8 @@ alt='push to paas'>
 	      </section>
 	      
 	      <section
-		data-background='https://farm6.staticflickr.com/5524/12000389034_6517be727f_k_d.jpg'>
+		data-background='https://farm6.staticflickr.com/5524/12000389034_6517be727f_k_d.jpg'
+		'herramientas'>
 		<aside class='notes'>Las
 		  herramientas de construcción son las
 		  que sirven para alimentar el pipeline
@@ -254,8 +256,8 @@ alt='push to paas'>
 		  reparto de todo. En general, las
 		  <em>build tools</em> son
 		  herramientas que permiten ejecutar
-		  tareas, incluyendo la propia
-		  <em>construcción</em> del programa que
+		  tareas, incluyendo el propio
+		  <em>ensamblaje</em> del programa que
 		  se vaya a  publicar, pero no sólo:
 		  empaquetamiento, comprobación y, por
 		  supuesto, ejecución de tests entre las
@@ -337,12 +339,13 @@ Reveal.initialize({ pdf: true });
 		data-background='img/you-should-by-cursedthing.jpg'
 		alt='You should'>
 		<aside class='notes'>Los tests se dividen en
-		aserciones y marcos. Las aserciones pueden ser basadas
+		aserciones y marcos; los marcos ejecutan las
+		aserciones y examinan el resultado.. Las aserciones pueden ser basadas
 		en el comportamiento o no; en el primer caso se afirma
 		o no qué debería hacer cada una de las cosas. Los
 		marcos permiten trabajar con diferentes librerías de
-		  aserciones. Por ejemplo, <code>mocha</code> con
-		  <code>supertest</code> o con <code>should.js</code></aside>
+		  aserciones. Por ejemplo, <code>mocha</code> (marco) con
+		  <code>supertest</code> o con <code>should.js</code>.</aside>
 	      </section>
 
 	      <section
@@ -362,6 +365,7 @@ Reveal.initialize({ pdf: true });
 	    });
     });
 		</code></pre>
+
 		<aside class='notes'>Este código no es de esta charla,
 		pero es que en esta charla tampoco me iba a poner a
 		escribirlo. Forma parte, sí, de la aplicación de <a href='https://www.amazon.es/dp/B00SDLIGC2?tag=atalaya-21&camp=3634&creative=24822&linkCode=as4&creativeASIN=B00SDLIGC2&adid=1N81P2VW6PEY1MNFBKNG&'>mi
@@ -427,7 +431,7 @@ before_script:
 	      usa para configurar la integración continua, en este
 		  caso en <a
 	      href='http://travis-ci.org'>Travis</a>, aunque es así
-	      porque usa valores por omisión: npm test, que a su vez
+		  porque usa valores por omisión: <code>npm test</code>, que a su vez
 	      llama a grunt con el valor test, que ya hemos mostrado
 	      previamente en la transpa: tests unitarios con qUnit. 
 Hay muchos
