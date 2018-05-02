@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Continua *</title>
+    
+    <meta name="description" content="DevOps, QA and Pokemon as a Service">
+    <meta name="author" content="JJ Merelo">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/extra.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement( 'link' );
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+     document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+    
+    <div class="reveal">
+      
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+	<section>
+	  <h1>En busca del Gran Botón Rojo</h1>
+	  <h3>
+	    <a href="http://jj.github.io">JJ Merelo</a> / <a href="http://twitter.com/jjmerelo"><code>@jjmerelo</code></a></h3>
+	</section>
+	
+	<section 
+	  data-background='https://farm4.staticflickr.com/3092/3085157011_4560528e9e_b_d.jpg' alt='gran botón rojo'>
+	  <h1>La importancia del botón</h1>
+	  <aside class='notes'>
+		  Uno de los objetivos es automatizar todo el proceso
+		de publicación de una aplicación o de despliegue a la
+		web sin necesidad de "parar las máquinas". Es decir,
+		pulsar un sólo botón y que la aplicación actualizada
+		  comience a ser usada por los clientes. En realidad,
+		todo lo que sé de devops lo aprendí en Breaking
+		Bad. Cuando el equipo de devops que formaban Pinkman
+		y White metió a un tío de ops, Gale Boetticher, que
+		no automatizaba, que lo apuntaba todo en una libreta,
+		ya se lió... </aside>
+	      </section>
+
+	      <section data-background='https://farm4.staticflickr.com/3360/3309461038_f1c8935eb0_b_d.jpg' alt='abracito de koalas'>
+		<aside class="notes">
+		  La base principal del devops es la
+		  cultura, ayudado por las
+		  herramientas. No hay "un tío devops". Es el abrazo entre
+		  desarrollo, sistemas y QA, o
+		  calidad. Todo ello apoyado por
+		  herramientas automatizadas. Eso ya
+		  os lo sabéis, pero lo cuento por si
+		  acaso. 
+		</aside>
+	      </section>
+
+	      <section
+		data-background='https://farm5.staticflickr.com/4012/4624759422_261746b298_b_d.jpg' alt='enchufe'>
+		<h1 class='bkg'>ポカヨケ</h1>
+		
+		<aside class="notes">El concepto de
+		  <a href='http://en.wikipedia.org/wiki/Poka-yoke'>Poka-yoke (ポカヨケ)</a>
+		  (<em>baka-yoke</em> previamente, o a
+		  prueba de estúpidos) significa a
+		  prueba de equivocaciones, es decir,
+		  tratar de diseñar un sistema que tenga
+		  tan pocas equivocaciones como sea
+		  posible. El proceso de despliegue o
+		  <em>reparto</em> (<em>delivery</em>)
+		  es el equivalente en ingeniería de
+		  ese concepto.</aside>
+	      </section>
+
+	      <section
+		 data-background='https://farm6.staticflickr.com/5573/14667856750_7f34fac0ca_k_d.jpg'
+		 alt='tubería verde'>
+		<aside class="notes">Un sistema de
+		  despliegue (o reparto) continuo se
+		  integra en una tubería o
+		  <em>pipeline</em> que trata de
+		  asegurar que, en cada paso, el
+		  producto sea el correcto. Y bonito y
+		  verde. Y que todo el mundo sea
+		  feliz.</aside>
+	      </section>
+	      
+	      <section
+		data-background='https://farm3.staticflickr.com/2011/2332987323_9f21439826_b_d.jpg'
+		 alt='big red button'>
+		<aside class="notes">Volvemos al
+		  botón: desde una máquina virtual
+		  "vacía", sin provisionar, el botón
+		  activa las diferentes etapas del
+		  pipeline para que esa  máquina virtual
+		  en la nube se pueda provisionar desde 0 y que lo que se
+		  despliegue se sepa que va a
+		  funcionar porque ha pasado los tests
+		  (y, en su caso, la aprobación del
+		  cliente).</aside>
+	      </section>
+				  
+	      <section
+		data-background='img/git-push-by-Jpellgen.jpg' img='git push'>
+		
+		<aside class='notes'>El pipeline, en
+		  sí, está alimentado por
+		  <em>git</em>, el estándar para
+		  gestionar fuentes y más allá, de
+		  trabajo en grupo y también,
+		  evidentemente, de integración y
+		  despliegue continuo. Cada avance y
+		  retroalimentación del pipeline
+		  necesita un comando de
+		  <code>git</code>.</aside>
+		
+	      </section>
+	      
+	      <section data-background='img/ramas-by-Kasia.jpg' alt='ramas by Kasia'>
+		<aside class='notes'>Normalmente
+		  empieza por la organización del
+		  trabajo en el repositorio en varias
+		  ramas, una de las cuales es la
+		  <code>master</code> que
+		  eventualmente será desplegada,
+		  usando reglas prácticas como
+		  <em>todo lo que hay en la master es
+		    desplegable</em>. Puede haber ramas
+		  varias ramas de pruebas y una rama de desarrollo
+		  en donde se puedan testear
+		  diferentes elementos hasta que estén
+		  listos para el despliegue.
+		</aside>
+	      </section>
+	      
+	      <section
+		data-background='https://farm4.staticflickr.com/3529/3175297773_edf3617df7_b_d.jpg'
+		'Enganches o ganchos'>
+		<aside class='notes'>git es un
+		  sistema de ficheros direccionado por
+		  contenido (sí, no un sistema de gestión de fuentes,
+		  o no solo) y distribuido y consigue actuar de
+		  múltiples formas diferentes usando
+		  <em>hooks</em> o ganchos. Cuando
+		  ocurre un evento determinado entre
+		  <a
+		    href='http://git-scm.com/book/es/v2/Customizing-Git-Git-Hooks'>la
+		    docena</a> definida, se puede
+		  ejecutar una orden con una
+		  <em>carga</em> que depende del
+		  evento. Estos ganchos pueden actuar
+		  también como válvulas, permitiendo o
+		  impidiendo que se ejecute la etapa
+		  siguiente del <em>pipeline</em>. Por
+		  ejemplo, no se permite un cambio si
+		  no pasa unos tests de aceptabilidad
+		  determinados (convenciones de
+		  programación, por ejemplo, o
+		  corrección sintáctica, sin meternos
+		  en la funcionalidad, que se puede
+		  probar en otra etapa). </aside>
+	      </section>
+	      
+	      <section 
+		data-background='https://farm4.staticflickr.com/3360/3503466579_77f544315f_b_d.jpg'
+		 alt='push to paas'>
+		
+		<aside class='notes'>En el caso de
+		  los PaaS, como los Azure Websites,
+		  lo único que hace falta para
+		  publicar es hace <code>push</code>; se usa en caso de
+		  código estático (como este) o,
+		  simplemente, si los tests se pasan
+		  localmente en vez de
+		  remotamente. Por
+		  ejemplo, <a href='http://ddays.azurewebsites.net/#/'>estas transpas desplegadas
+		    estáticamente en Azure
+		    Websites</a>, previa configuración a
+		  través del panel de control de Azure
+		  y especificación del sitio en
+		  Github. Otros PaaS como Heroku
+		  u Openshift tampoco exigen pasar
+		  todo tipo de tests internos: push y
+		  se publica, aunque en este caso se
+		  hace push directamente al
+		  repositorio y no a GitHub que está
+		  "enganchado" con Azure. Por eso git es, entre
+		  todas, la única herramienta
+		  imprescindible (en el resto hay opciones). Los
+		  <em>ganchos</em> de git, tanto del lado del cliente
+		  (al activar el despliegue) como del lado del
+		  servidor (al copiar si es necesario al sistema de
+		  ficheros los nuevos elementos) son los que se
+		  encargan de hacer este despliegue. Aparte de los
+		  ganchos puede que haga falta alguna herramienta
+		  adicional, como un supervisor de cambios o un
+		  servidor web. Pero en muchos casos, <a href='https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps'><code>git push</code> y un
+		    <code>post-receive</code> <em>hook</em></a> es todo lo
+		  que hace falta. En otros casos, usar también <a
+		  href='https://danbarber.me/using-git-for-deployment/'>git
+		      en el sitio de despliegue es
+		  conveniente</a>. Tampoco es cuestión de
+		  entusiasmarse, porque <a
+		  href='http://gitolite.com/deploy.html#different-ways-to-deploy'>git
+		      no es una herramienta de despliegue</a>. Pero
+		  para aplicaciones simples, web y montajes rápidos
+		  puede hacer la labor. </aside>
+	      </section>
+
+	      <section 
+		data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'
+		alt='pies'>
+		<aside class='notes'>En montajes un poco más
+		  complejos, la prueba es
+		  imprescindible en un flujo de
+		  trabajo de integración/despliegue
+		  continuo. Cada una de las fases debe
+		  de ir acompañada de una prueba a
+		  todos los niveles. <a href='http://en.wikipedia.org/wiki/Test-driven_development'>Desarrollo basado
+		  en prueba</a> o en comportamiento
+		  (que describe en lenguaje
+		  <em>natural</em> qué pruebas deben
+		  pasarse) son las herramientas
+		  fundamentales del mismo. </aside>
+	      </section>
+	      
+	      <section
+		data-background='https://farm6.staticflickr.com/5524/12000389034_6517be727f_k_d.jpg'
+		'herramientas'>
+		<aside class='notes'>Las
+		  herramientas de construcción son las
+		  que sirven para alimentar el pipeline
+		  y lo conectan con el gran botón de
+		  reparto de todo. En general, las
+		  <em>build tools</em> son
+		  herramientas que permiten ejecutar
+		  tareas, incluyendo el propio
+		  <em>ensamblaje</em> del programa que
+		  se vaya a  publicar, pero no sólo:
+		  empaquetamiento, comprobación y, por
+		  supuesto, ejecución de tests entre las
+		  diferentes tareas que se pueden ejecutar. </aside>
+	      </section>
+
+	      <section data-background-transition="zoom">
+		<pre><code data-trim>module.exports = function(grunt) { //  -*-Javascript-*-
+  require('load-grunt-tasks')(grunt);
+  var port = grunt.option('port') || 8000;
+  // Project configuration
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    meta: {
+      banner:
+        ' * DevOpsOSSAzureDays presentation <%= pkg.version %>' +
+        ' (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
+        ' * http://github.com/JJ/devops-days\n' +
+        ' * Apache licensed...\n' +
+    },
+    qunit: {
+      files: [ 'test/*.html' ]
+    },
+  });
+  // Run tests
+  grunt.registerTask( 'test', [ 'qunit' ] );    
+};
+		</code></pre>
+
+		<aside class='notes'>Ya iba siendo hora de tener un
+	      código en condiciones, hombre ya, tanta fotico tanta
+	      fotico. ¡Y ni siquiera una de gaticos! Vamos al turrón:
+	      se trata de un Gruntfile, un *file de los que hay por
+	      kilos y cuya loqueseafile se comenzó con los venerables
+		  (alguien diría vetustos) <code>makefiles</code>. Los
+	      ficheros "de construcción" son una herramienta más
+	      fundamental todavía que la programación en sí: permiten
+	      conocer y explicitar los pasos necesarios para desplegar
+	      o instalar un programa y normalmente tienen la
+	      flexibilidad suficiente para hacerlo. Grunt tiene como
+	      símbolo un marrano jabalí, y a veces trabajar con él
+	      puede ser tan fácil como tratar de enseñar a sentarse a
+	      este simpático animalito. Pero si no te gusta, siempre
+		  tienes <code>Gulp</code> o incluso el Makefile, que
+	      sirve para cualquier lenguaje de programación. Hay
+	      muchas herramientas de este tipo que se han hecho
+		  populares: <code>Rake</code> para Ruby,
+	      <code>Maven</code> para Java y seguramente otras muchas
+	      que desconozco. La mayoría de las herramientas son de
+	      propósito general, pero simplemente por minimizar las
+	      herramientas a instalar en el caso de un despliegue se
+	      suele usar la apropiada para el lenguaje en concreto (o
+	      una de ellas). A mi grunt me parece espantoso, pero <a
+	      href='http://markdalgleish.github.io/presentation-build-wars-gulp-vs-grunt/'>para
+		gustos colores</a>. Grunt es más bien igual a
+	      configuración, es decir, declaraciones estáticas,
+	      <em>funcionales</em>, de lo que uno quiere. Gulp permite
+	      escribir código para hacerlo.
+		</aside>
+	      </section>
+
+	      <section  data-background-transition="zoom">
+		<pre><code data-trim>Reveal.addEventListener( 'ready', function() {
+	test( 'Reveal.isReady', function() {
+		strictEqual( Reveal.isReady(), true, 'returns true' );
+	});
+} );
+
+Reveal.initialize({ pdf: true });
+		</code></pre>
+		<aside class='notes'>Los test unitarios, como en este
+		caso, revelan los posibles errores en la funcionalidad
+		que uno quiere que tenga. En este caso, la
+		funcionalidad de generar un PDF a partir de esta
+		  presentación (que incluya estas notas, imagino).</aside>
+	      </section>
+
+	      <section 
+		data-background='img/you-should-by-cursedthing.jpg'
+		alt='You should'>
+		<aside class='notes'>Los tests se dividen en
+		aserciones y marcos; los marcos ejecutan las
+		aserciones y examinan el resultado.. Las aserciones pueden ser basadas
+		en el comportamiento o no; en el primer caso se afirma
+		o no qué debería hacer cada una de las cosas. Los
+		marcos permiten trabajar con diferentes librerías de
+		  aserciones. Por ejemplo, <code>mocha</code> (marco) con
+		  <code>supertest</code> o con <code>should.js</code>.</aside>
+	      </section>
+
+	      <section
+		data-background-transition='zoom'>
+		<pre><code data-trim>it('should set result right', function (done) {
+	request(app)
+	    .post('/porra/resultado/liga/2014/mad/2/bcn/2')
+	    .expect('Content-Type', /json/)
+	    .expect(200)
+	    .end( function ( error, resultado ) {
+		if ( error ) {
+		    return done( error );
+		}
+                resultado.body.should.exist;
+		resultado.body.should.have.property('resultado','2-2');
+		done();
+	    });
+    });
+		</code></pre>
+
+		<aside class='notes'>Este código no es de esta charla,
+		pero es que en esta charla tampoco me iba a poner a
+		escribirlo. Forma parte, sí, de la aplicación de <a href='https://www.amazon.es/dp/B00SDLIGC2?tag=atalaya-21&camp=3634&creative=24822&linkCode=as4&creativeASIN=B00SDLIGC2&adid=1N81P2VW6PEY1MNFBKNG&'>mi
+		  libro <em>Nuboso, con probabilidad de
+		despliegue</em> (¿alguien se pensó que iba a venir
+		  aquí y no hablar de mi libro?) y usa <a
+		href='https://github.com/shouldjs'>Should.js</a>, un
+		módulo de aserciones para desarrollo basado en
+		comportamiento y que permite escribir en tests cosas
+		como estas: esto tiene que ser así de verdad de la
+		buena, venga, va, que esto sale, que sí, que ya lo
+		  tienes. Mola por eso.</a>
+		</aside>
+	      </section>
+
+	      <section data-background-transition="zoom">
+		<img src='img/keep-calm-and-integrati-on-2.png'
+		alt='keep calm and integration'>
+	
+		<aside class='notes'>La práctica de <a
+	      href='http://en.wikipedia.org/wiki/Continuous_integration'>integración
+		  continua proviene de la programación extrema</a>, y
+	      se trata de integrar los cambios que hayan pasado los
+		  tests en cuanto que o hayan hecho. </aside>
+	      </section>
+
+	      <section
+	      data-background='https://farm4.staticflickr.com/3644/3451948766_4830e003b9_o_d.jpg'
+	      alt='ramas entrelazadas'>
+	
+		<aside class='notes'>Las ramas que se van creando se
+	      fusionan de forma continua, varias veces al día, tras
+	      pasar los test unitarios y los tests de integración (que
+	      pueden incluir cambios adicionales hechos a la rama
+		  máster desde la separación de la misma). Cuando
+	      llegamos al punto de integración continua ya se ha
+	      recorrido parte del pipeline: repo de código,
+	      automatización de la construcción del mismo, testeo
+	      automático, aparte de otras reglas como que se trabaje
+	      sobre el máster y se acabe fusionando todos los días,
+		  manteniendo la construcción lo más rápida posible. </aside>
+
+	      </section>
+
+	      <section data-background-transition="zoom">
+		<h2><code>travis.yml</code></h2>
+		<pre><code data-trim>language: node_js
+node_js:
+  - 0.10
+  - 0.11
+before_script:
+  - npm install -g grunt-cli</code></pre>
+
+		<h3>En Travis</h3>
+		<pre><code>npm test</code></pre>
+
+		<h3>En <code>Gruntfile.js</code></h3>
+		<pre><code data-trim>  "scripts": {
+		  "test": "grunt test",
+	}</code></pre>
+
+		<aside class='notes'>Este es el escueto fichero que se
+	      usa para configurar la integración continua, en este
+		  caso en <a
+	      href='http://travis-ci.org'>Travis</a>, aunque es así
+		  porque usa valores por omisión: <code>npm test</code>, que a su vez
+	      llama a grunt con el valor test, que ya hemos mostrado
+	      previamente en la transpa: tests unitarios con qUnit. 
+Hay muchos
+	      sistemas de integración continua que se pueden usar
+	      online u offline. Jenkins, para el mundo Java, es una de
+	      las más populares y es también software libre (Travis no
+	      lo es, salvo algunas herramientas liberadas). Circle-CI,
+		  Shippable, decenas de herramientas pueden usarse
+	      para esto, cada cual con sus características, sus
+	      lenguajes soportados, su rapidez. </aside>
+	      </section>
+
+	      <section data-background-transition="zoom">
+		<h2>Configurando pipelines</h2>
+		<img src='img/snap-ci.png'>
+
+		<aside class='notes'>SnapCI permite, por ejemplo,
+		configurar pipelines y reusa la configuración de
+		Travis (que es algo sí como un estándar, al menos el
+		YML). Shippable y otros también permiten configurar
+		fácilmente despliegue a PaaS como Heroku y en algunos
+		casos OpenShift, de forma que de integración continua
+		a despliegue continuo, en realidad, sólo hay un paso
+		  en el pipeline que lleva directamente a la <a
+		href='http://de.wikipedia.org/wiki/Continuous_Delivery'>integración
+		  continua</a>. Esto mola nada más que regular, porque no tiene API (creo), pero a cambio puedes desplegar simplemente haciendo push a GitHub.</aside>
+	      </section>
+
+	      <section  data-background-transition="zoom">
+		<h1>GitHub en medio de todo</h1>
+		<img src='img/pr-ci.png'>
+		<aside class='notes'>Los sistemas de integración
+		continua se integran en el pipeline con GitHub (y
+		bitbucket, imagino, aunque no lo uso) y con los
+		PaaS. Pero cuando se trata de un IaaS como Azure es
+		  otra historia.</aside>
+	      </section>
+
+	      <section
+	      data-background='https://farm8.staticflickr.com/7356/9112281601_81749f7938_k_d.jpg' alt='raíces'>
+		<aside class='notes'>En una IaaS como Azure hay que
+	      partir de la raíz para crear toda la infraestructura
+	      para que se despliegue la aplicación, a tres niveles:
+	      creación (o recreación) de la máquina virtual,
+	      instalación de la infraestructura para ello en la
+	      máquina virtual ya ejecutándose y, finalmente,
+		  instalación y ejecución de la aplicación en
+	      sí. Conviene en este punto distinguir entre <a
+	      href='https://puppetlabs.com/blog/continuous-delivery-vs-continuous-deployment-whats-diff'>despliegue
+		  y pase a producción (<em>delivery</em>)
+	      continuo</a>. En el segundo puede haber un paso manual,
+	      que separe la posibilidad del pase a producción del pase
+	      en sí. En el despliegue continuo, cada vez que se
+	      integra se pasa automáticamente a producción.</aside>
+
+	      </section>
+
+	      <section  data-background-transition="zoom">
+		<h2>Creando la máquina</h2>
+
+		<pre><code data-trim>#!/bin/bash
+azure vm create devops-days -o vmdepot-51465-1-32 -l "West Europe" $1 $2 --ssh
+azure vm endpoint create-multiple devops-days 80:80,443:443
+ssh-copy-id -i ~/.ssh/id_rsa.pub $1@devops-days.cloudapp.net</code></pre>
+
+		<aside class='notes'>Con esto se crea la máquina
+		  virtual a partir de un id de <a href='https://vmdepot.msopentech.com/'>VMDepot</a>. Se podría haber creado
+		  con <a
+		href='https://github.com/MSOpenTech/vagrant-azure'>Vagrant</a>,
+		en general, necesitarás una herramienta de
+		orquestación que actúe a nivel de hipervisor. Vagrant
+		es mucho más general, por supuesto, incluso Puppet u
+		otras herramientas por el estilo. Pero esencialmente
+		lo que se hace es lo que se muestra: definir qué
+		imagen se va a usar en la máquina y alguna
+		configuración adicional, integrando finalmente una
+		  clave pública para poder conectarte. En la creación
+		  de máquinas se ha optado por una con node ya
+		  instalado, aunque no hay ningún problema con hacerlo
+		  con una de las imágenes que provee Azure (o
+		  cualquier otro servicio). Vagrant tiene el problema
+		  adicional de tener que subir la máquina
+		  preconfigurada, sin embargo con esto se hace
+		  rápidamente y online. 
+		</aside>
+	      </section>
+
+	      <section  data-background-transition="zoom">
+		<h2>Provisionando</h2>
+
+		<pre><code data-trim>---
+- hosts: azure
+  remote_user: jjmerelo
+  sudo: yes
+  tasks:
+    - name: install packages
+      apt: pkg={{ item}}
+      with_items:
+        - language-pack-en 
+        - language-pack-es 
+        - git 
+        - curl 
+        - build-essential 
+        - libssl-dev
+    - name: install globals node
+      command: "npm install -g grunt-cli"
+    - name: stop http
+      action: shell pkill httpd
+      ignore_errors: True</code></pre>
+
+		<aside class='notes'>Uso Ansible por razones que no
+	      puedo revelar aquí por estar Juanje delante. En
+	      realidad, es muy fácil usar Chef con Azure, no hay más
+	      que marcar una casilla y se instala en la VM, pero
+	      Ansible no necesita más instalación que Python (que lo
+	      llevan casi todas las MVs y además un sólo fichero. Y no
+	      hace falta aprender Ruby. Que no tengo nada contra él,
+		  ni contra Chef, pero, que es más fácil y ya está,
+	      ea. En este caso aparte de instalar paquetes instalo el
+	      Grunt (que hace falta, herramienta de construcción
+	      fundamental) y finalmente mato el HTTPd que no sé por
+	      qué diablos está activado. Ansible puede llegar hasta
+		  donde uno quiera... Aquí está la <em>infraestructura
+	      como código</em>: estás definiendo la infraestructura
+	      con un código (versionado y demás).  
+		</aside>
+	      </section>
+
+	      <section  data-background-transition="zoom">
+		<h1>¿Y el código?</h1>
+
+		<pre><code data-trim>---
+- hosts: azure
+  remote_user: jjmerelo
+  tasks:
+    - name: clone repo
+      git: repo=https://github.com/JJ/devops-days.git dest=devops-days
+		</code></pre>
+
+		<aside class='notes'>Si no se van a desplegar
+		proyectos diferentes, conviene descargar el repo
+		  original para trabajar sobre él.</aside>
+
+	      </section>
+
+	      <section  data-background-transition="zoom">
+		<h2>Tenemos un plan</h2>
+
+		<pre><code data-trim>var plan = require('flightplan');
+// configuration
+plan.target('azure', {
+  host: 'devops-days.cloudapp.net',
+  username: 'jjmerelo',
+  agent: process.env.SSH_AUTH_SOCK
+});
+plan.local(function(local) { // Local
+    local.echo('Plan local: push changes');
+    local.exec('git push');
+});
+plan.remote(function(remote) { // run commands on the target's remote hosts
+    remote.log('Pull');
+    remote.with('cd devops-days',function() {
+	remote.exec('git pull');
+	remote.exec('npm install .');
+    });
+    remote.with('cd /home/jjmerelo/devops-days',function() {
+	remote.sudo('grunt serve --port=80');
+    });
+});</code></pre>
+		<aside class='notes'><a
+		  href='https://github.com/pstadler/flightplan'>FlightPlan
+		  es una herramienta de node</a> para despliegue de
+		  aplicaciones. Si uno tiene el toolbelt de node ya
+		  instalado, es uno más. Si no lo tiene, se puede usar
+		  cualquier otra. Generalmente, las herramientas de
+		  despliegue como esta, o Fabric, o Capistrano, no
+		  necesitan nada en el destino, permiten ejecutar un
+		  plan de despliegue, incluyendo finalmente la
+		  ejecución si es necesario (o rearrancar la
+		  aplicación si lo es).</aside>
+
+	      </section>
+
+	      <section data-background='img/flightplan.png'
+	      alt='ejecutando flightplan'>
+		<aside class='notes'>FlightPlan no es perfecto (ni yo
+	      un experto), pero hace su trabajo correctamente y con
+	      muchos colorines. De hecho, todo se puede colocar en un
+	      gran botón rojo, regido por Grunt, que lo haga todo:
+	      pasar los tests, si pasan provisionar la máquina, si lo
+	      hace también desplegar. ¡Despliegue continuo! ¡Gran
+		  botón rojo!</aside>
+	      </section>
+
+	      <section
+	      data-background='https://farm6.staticflickr.com/5488/12716584773_045fe530ce_k_d.jpg'
+	      alt='tool emporium'>
+
+		<aside class='notes'>Devops es una religión que adora
+	      al gran botón rojo, y el gran botón rojo consiste en
+	      integrar una serie de herramientas que permitan
+	      alimentar al pipeline y, eventualmente, desplegar
+	      fácilmente y en unos segundos una aplicación partiendo
+	      de una máquina virtual "limpia". Eso también permite
+	      equipos más integrados, más conscientes de las
+	      herramientas que usan, configuraciones y aplicaciones
+		  reproducibles en múltiples entornos y finalmente,
+	      dormir mejor.
+
+		  Con todo esto, se publica todo fácilmente en <a
+	      href='http://devops-days.cloudapp.net'>Azure</a> sin
+	      (prácticamente) tener que entrar al servidor.</aside>
+	      </section>
+
+	      <!-- Diapo final -->
+	      <section data-background-transition="zoom">
+		<img src='img/questions.png' alt='any question?'>
+		<p>Descarga esto de <a href='http://github.com/JJ/devops-days'><code>git.io/ci-cd</code></a>
+		</p>
+	      </section>
+	      
+	      <!-- Diapo de créditos de las fotos -->
+
+	      <section>
+		<h2>Créditos</h2>
+		
+		<ol>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/wlodi/3085157011'>Botón
+		    rojo por włodi</a>.</li>
+		  
+		  <li class='credits'><a
+				  href='https://www.flickr.com/photos/cdianne/3309461038/in/photolist-hJuQJ1-5FLnUo-kzNYWN-bgWp8P-fiRzju-oFc47P-mTTkB-8tNBuR-8T4g2Z-99jayA-63rRt5-9MSgjp-5tTaBu-eufXd3-4KTqyZ-8WjYUD-8w4TiH-6egof2-eVFGq8-pTKhW7-8tGhQ2-kMQoY-irn55j-kwJub6-deieCW-7XRpTA-92Ebtu-9GGzvq-9YWo9d-cft8HC-4xmPxY-57raBL-4Camod-ePtZ2-nNjxsW-aaCCYs-dV63jH-31MZZi-7ch3gG-7PahuV-3Tk1uj-3QmEZ-9or3RT-fHtFw3-6D9QE-udFpK-5qXw39-4R3wbo-aNJhp6-e1ZaCN'>Koalas por
+				  Dee'lite</a>.</li>
+
+		  <li class='credits'><a
+				  href='https://www.flickr.com/photos/cennydd/4624759422'>Enchufe
+				      por Cennydd Bowles</a></li>
+
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/98712159@N07/14667856750'>Tubería
+		    por Reinhard H</a></li>
+		  <li class='credits'><a href='https://www.flickr.com/photos/rev_aviator/2332987323'>Botón rojo de Gord Spence</a></li>
+
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/jpellgen/9327589307'>Push
+		    button fool por
+		    Jpellgen</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/mysza/2277332792'>Ice
+		    tips (ramas) por Kasia</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/mckln/3503466579'>Push
+		    to PaaS por David Woo</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/dannebrog/206978850'>Pies
+		    por dannebrog</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/yabanji/3175297773'>Ganchos
+		    por Debbie Long</a></li>
+		  <li
+		    class='credits'><a href='https://www.flickr.com/photos/57412095@N05/12000389034'>Herramientas
+		    por A Yee</a></li>
+		  <li class='credits'><a
+		    href='https://www.flickr.com/photos/cursedthing/2109352947'>Sábana
+		    con should por
+		    cursedthing</a></li>
+
+		<li class='credits'><a
+				  href='https://www.flickr.com/photos/nauright/3451948766'>Treebranches
+		  por romana klee</a>.</li>
+
+		<li class='credits'><a
+		href='https://www.flickr.com/photos/kiuko/9112281601'>Raíces
+		  de Kiuko</a></li>
+
+		<li class='credits'><a
+				  href='https://www.flickr.com/photos/neilt/12716584773'>Ferretería
+		  de Neil Turner</a></li>
+
+				  </ol>
+
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<!-- Se acaba el contenido y comienza el código -->
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+			  width: 994,
+			  controls: true,
+			  progress: true,
+			  history: true,
+			  center: true,
+
+			  transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+			  // Optional reveal.js plugins
+			  dependencies: [
+			    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+			    { src: 'plugin/zoom-js/zoom.js', async: true },
+			    { src: 'plugin/notes/notes.js', async: true }
+			  ]
+			});
+
+		</script>
+
+	</body>
+</html>
