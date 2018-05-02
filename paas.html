@@ -421,10 +421,10 @@ before_script:
 		<h3>En Travis</h3>
 		<pre><code>npm test</code></pre>
 
-		<h3>En <code>Gruntfile.js</code></h3>
+		<h3>En <code>packaje.json</code></h3>
 		<pre><code data-trim>  "scripts": {
 		  "test": "grunt test",
-	}</code></pre>
+}</code></pre>
 
 		<aside class='notes'>Este es el escueto fichero que se
 	      usa para configurar la integración continua, en este
@@ -729,19 +729,16 @@ plan.remote(function(remote) { // run commands on the target's remote hosts
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-			  width: 994,
+			  width: "95%",
 			  controls: true,
 			  progress: true,
 			  history: true,
 			  center: true,
-
-			  transition: 'concave', // none/fade/slide/convex/concave/zoom
+			  transition: 'convex', // none/fade/slide/convex/concave/zoom
 
 			  // Optional reveal.js plugins
 			  dependencies: [
 			    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-			    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 			    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
 			    { src: 'plugin/zoom-js/zoom.js', async: true },
 			    { src: 'plugin/notes/notes.js', async: true }
