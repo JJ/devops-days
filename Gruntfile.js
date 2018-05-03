@@ -10,13 +10,13 @@ module.exports = function(grunt) { //  -*-Javascript-*-
     meta: {
       banner:
         '/*!\n' +
-        ' * DevOpsOSSAzureDays presentation <%= pkg.version %>' +
+        ' * DevOps presentation <%= pkg.version %>' +
         ' (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
         ' * http://github.com/JJ/devops-days\n' +
         ' * Apache licensed\n' +
         ' *\n' +
         ' * Copyright (C) 2015 Hakim El Hattab, http://hakim.se\n' +
-        ' * Copyright (C) 2015 JJ Merelo, http://jj.github.io' +
+        ' * Copyright (C) 2018 JJ Merelo, http://jj.github.io' +
         ' (nuevo contenido)\n' +
         ' */'
     },
@@ -90,13 +90,18 @@ module.exports = function(grunt) { //  -*-Javascript-*-
     connect: {
       server: {
         options: {
-          port: port,
-          base: '.',
-          open: true
+            port: port,
+            open: true,
+            base: {
+                path: '.',
+                options: {
+                    index: 'paas.html'
+                }
+            }
         }
       }
     },
-
+      
     zip: {
       'reveal-js-presentation.zip': [
         'index.html',
@@ -125,25 +130,25 @@ module.exports = function(grunt) { //  -*-Javascript-*-
         tasks: 'css-core'
       },
       html: {
-        files: [ 'index.html']
+          files: [ 'paas.html','index.html']
       }
     },
 
-     shell: {
-	 options: {
-             stderr: false
-	 },
-	 vm: {
-             command: './createvm.sh process.env.AZ_USERNAME process.env.AZ_PASSWD'
-	 },
-	 provision: {
-	     command: 'ansible-playbook stuff/playbook.yml -i stuff/hosts.txt'
-	 },
-	 gitclone: {
-	     command: 'ansible-playbook stuff/git.playbook.yml -i stuff/hosts.txt'
-	 },
+      shell: {
+	  options: {
+              stderr: false
+	  },
+	  vm: {
+              command: './createvm.sh process.env.AZ_USERNAME process.env.AZ_PASSWD'
+	  },
+	  provision: {
+	      command: 'ansible-playbook stuff/playbook.yml -i stuff/hosts.txt'
+	  },
+	  gitclone: {
+	      command: 'ansible-playbook stuff/git.playbook.yml -i stuff/hosts.txt'
+	  },
       }
-
+      
   });
 
   // Default task
