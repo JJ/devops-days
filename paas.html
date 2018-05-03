@@ -173,6 +173,7 @@ alt='big red button'>
 
 	</section>
 
+        <section>
         
 	  <section
 	    data-background='img/git-push-by-Jpellgen.jpg' img='git push'>
@@ -245,13 +246,7 @@ alt='big red button'>
 		  código estático (como este) o,
 		  simplemente, si los tests se pasan
 		  localmente en vez de
-		  remotamente. Por
-		  ejemplo, <a href='http://ddays.azurewebsites.net/#/'>estas transpas desplegadas
-		    estáticamente en Azure
-		    Websites</a>, previa configuración a
-		  través del panel de control de Azure
-		  y especificación del sitio en
-		  Github. Otros PaaS como Heroku
+		  remotamente. Otros PaaS como Heroku, now.sh
 		  u Openshift tampoco exigen pasar
 		  todo tipo de tests internos: push y
 		  se publica, aunque en este caso se
@@ -279,10 +274,12 @@ alt='big red button'>
 		  para aplicaciones simples, web y montajes rápidos
 		  puede hacer la labor. </aside>
 	      </section>
-
+        </section>
+        
+        <section>
 	      <section 
 		data-background='https://farm1.staticflickr.com/74/206978850_309a7cf1a3_b_d.jpg'
-		alt='pies'>
+		name='pies'>
 		<aside class='notes'>En montajes un poco más
 		  complejos, la prueba es
 		  imprescindible en un flujo de
@@ -385,6 +382,20 @@ Reveal.initialize({ pdf: true });
 		funcionalidad de generar un PDF a partir de esta
 		  presentación (que incluya estas notas, imagino).</aside>
 	      </section>
+
+              <section><h1>O Docker</h1>
+                <pre><code>FROM jjmerelo/test-perl6:latest
+LABEL version="1.0.2" maintainer="JJ Merelo &lt;jjmerelo@GMail.com>"
+RUN apk update && apk upgrade && apk add graphviz libssl1.0 && apk add ca-certificates wget && update-ca-certificates
+RUN ln -s /lib/libssl.so.1.0.0 /lib/libssl.so
+RUN ln -s /var/lib/libssl.so.1.0.0 /var/lib/libssl.so
+ADD https://github.com/perl6/doc/raw/master/META6.json /tmp/
+RUN cd /tmp/ &&  zef install --deps-only .
+# Will run this
+ENTRYPOINT P6_DOC_TEST_VERBOSE=1 prove -e perl6 t
+                </code></pre>
+              </section>
+
 
 	      <section 
 		data-background='img/you-should-by-cursedthing.jpg'
@@ -520,8 +531,12 @@ Hay muchos
 		  otra historia.</aside>
 	      </section>
 
+        </section>
+
+        <section>
+        
 	      <section
-	      data-background='https://farm8.staticflickr.com/7356/9112281601_81749f7938_k_d.jpg' alt='raíces'>
+	      data-background='https://farm8.staticflickr.com/7356/9112281601_81749f7938_k_d.jpg' name='raíces'>
 		<aside class='notes'>En una IaaS como Azure hay que
 	      partir de la raíz para crear toda la infraestructura
 	      para que se despliegue la aplicación, a tres niveles:
@@ -676,6 +691,8 @@ plan.remote(function(remote) { // run commands on the target's remote hosts
 		  botón rojo!</aside>
 	      </section>
 
+        </section>
+        
 	      <section
 	      data-background='https://farm6.staticflickr.com/5488/12716584773_045fe530ce_k_d.jpg'
 	      alt='tool emporium'>
